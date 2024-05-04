@@ -5,4 +5,4 @@ This is an ongoing research project. We investigate the release of one frozen em
 We have focused our attention on frozen self-supervised pretrained models (SimCLR, Dino, etc.) that directly encourage higher cosine similarity between similar concepts. The normalization of data instances in such models discards the need for vector clipping, as each embedding is typically projected onto the unit hypersphere by default. Our preliminary results are promising (Dino and SimCLRv2 for vision and SimCSE for NLP), and we are continuing our experiments to possibly write a research paper in the near future, and publicly release the full code.
 
 
-This research project is a part of my work at the Data Science and Machine Learning Laboratory (DML) at Sharif University of Technology under the supervision of Prof. Rabiee. and Gita Sarafraz, PhD. I wrote the code and developed the main current ideas. For inquiries, email me at amirmm379@gmail.com 
+I wrote the code and developed the main current ideas. For inquiries, email me at amirmm379@gmail.com 
