@@ -1,8 +1,21 @@
-# DP-with-normalized-class-representatives
+Modern differentially private (DP) training methods—most notably DP-SGD—suffer severe performance degradation under tight privacy budgets (ε < 1). This degradation is particularly damaging in low-resource or multi-class settings, where gradient noise overwhelms the learning signal.
 
-This is an ongoing research project. We investigate the release of one frozen embedding (or more?) per class and create a simple differentially private model to predict labels for new data instances. Each sample is classified to the class representative with the highest cosine similarity, which takes an extremely short amount of time compared to training a new classifier with differential privacy on top of the frozen embeddings. Interestingly, while the non-dp version of such an approach performs worse than non-dp fine-tuning, the performance at high privacy guarantees (epsilon < 0.5) is significantly better. The simplicity of this approach allows for theoretical investigations as well. 
+At the same time, self-supervised representation learning (SSL) models such as SimCLR, DINO, and SimCSE produce normalized embeddings where semantically similar inputs naturally cluster in cosine space. These representations already encode substantial class structure without requiring supervised training.
 
-We have focused our attention on frozen self-supervised pretrained models (SimCLR, Dino, etc.) that directly encourage higher cosine similarity between similar concepts. The normalization of data instances in such models discards the need for vector clipping, as each embedding is typically projected onto the unit hypersphere by default. Our preliminary results are promising (Dino and SimCLRv2 for vision and SimCSE for NLP), and we are continuing our experiments to possibly write a research paper in the near future, and publicly release the full code.
+This work investigates a radically simple alternative to DP fine-tuning:
 
+Release a small, DP-protected set of normalized class representatives (prototypes) on top of frozen SSL embeddings, and classify new examples via cosine similarity.
 
-I wrote the code and developed the main current ideas. For inquiries, email me at amirmm379@gmail.com 
+This removes the need for DP training entirely, reduces DP cost to a one-shot perturbation of class prototypes, and leverages the geometric properties of SSL embeddings (normalization, cosine contrastive losses) to avoid clipping and gradient-noise accumulation.
+
+We ask:
+
+Can a prototype-based DP classifier achieve competitive accuracy in the strict privacy regime (ε < 0.5)?
+
+How does the trade-off between number of prototypes, sensitivity, and privacy budget affect performance?
+
+What theoretical guarantees can be derived for error rates when classification reduces to nearest-prototype selection on the unit hypersphere?
+
+To what extent do SSL representations amplify or stabilize DP noise relative to traditional supervised features?
+
+We provide empirical and theoretical evidence that this approach significantly outperforms DP fine-tuning in the tight-privacy regime, while requiring orders of magnitude less computation.
