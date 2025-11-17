@@ -18,4 +18,4 @@ What theoretical guarantees can be derived for error rates when classification r
 
 To what extent do SSL representations amplify or stabilize DP noise relative to traditional supervised features?
 
-We provide empirical and theoretical evidence that this approach significantly outperforms DP fine-tuning in the tight-privacy regime, while requiring orders of magnitude less computation.
+We provide empirical  evidence that this approach significantly outperforms DP fine-tuning in the tight-privacy regime, while requiring orders of magnitude less computation.
